@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nine Down privacy policy</title>
+<meta name="description" content="What Nine Down keeps on your phone, how ads are handled, and how to reach us.">
+<link rel="canonical" href="https://ibrahimbilgic.github.io/nine-down/policy.html">
+<style>
+  @font-face { font-family: Unbounded; font-weight: 600 700; font-display: swap; src: url(fonts/unbounded-700.ttf) format("truetype"); }
+  @font-face { font-family: "Hanken Grotesk"; font-weight: 400 500; font-display: swap; src: url(fonts/hanken-400.ttf) format("truetype"); }
+  @font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-display: swap; src: url(fonts/hanken-600.ttf) format("truetype"); }
+  :root {
+    --bg: #F4EEE3; --surface: #FBF7F0; --line: #DFD3BF; --text: #2A1F17; --muted: #6B5C4E;
+    --accent: #1D6B50; --rim: #5A3A22; --slot: #3F2716; --ledge: #B98A52;
+    --tile-top: #F0D29B; --tile-bottom: #DDB374; --felt: #1D6B50;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17120E; --surface: #221B15; --line: #352B21; --text: #F1E7D8; --muted: #B6A693; --accent: #4FB08A; }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 400 17px/1.6 "Hanken Grotesk", system-ui, sans-serif;
+  }
+  main { max-width: 40rem; margin: 0 auto; padding: 48px 20px 64px; }
+  .rail {
+    display: inline-flex; gap: 3px; padding: 7px 7px 9px; border-radius: 10px;
+    background: var(--rim); box-shadow: inset 0 -5px 0 var(--ledge);
+  }
+  .flap {
+    width: 16px; height: 26px; border-radius: 5px 5px 2px 2px;
+    background: linear-gradient(var(--tile-top), var(--tile-bottom));
+  }
+  .flap.down { background: var(--slot); box-shadow: inset 0 -6px 0 #8a6a4a; }
+  h1 {
+    font: 700 clamp(2rem, 7vw, 2.6rem)/1.1 Unbounded, system-ui, sans-serif;
+    letter-spacing: -0.02em; margin: 28px 0 8px;
+  }
+  .lede { color: var(--muted); margin: 0 0 8px; }
+  .date { color: var(--muted); font-size: 0.9rem; margin: 0 0 36px; }
+  h2 {
+    font: 600 1.15rem/1.3 Unbounded, system-ui, sans-serif; letter-spacing: -0.01em;
+    margin: 40px 0 10px;
+  }
+  p, li { max-width: 68ch; }
+  ul { padding-left: 1.2em; margin: 8px 0; }
+  li { margin: 6px 0; }
+  li::marker { color: var(--accent); }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    padding: 18px 20px; margin: 16px 0;
+  }
+  .card p { margin: 0; }
+  .todo { background: #F6DFA8; color: #3A2716; padding: 1px 6px; border-radius: 4px; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+  <div class="rail" aria-hidden="true"><span class="flap"></span><span class="flap"></span><span class="flap"></span><span class="flap"></span><span class="flap"></span><span class="flap"></span><span class="flap"></span><span class="flap"></span><span class="flap down"></span></div>
+  <h1>Privacy in Nine Down</h1>
+  <p class="lede">Nine Down holds two dice games, Shut the Box and Liar’s Dice, and plays them entirely on your phone: you start playing straight from the menu, and AppFellas runs no server behind the game. This page lists the little information involved and who handles it.</p>
+  <p class="date">In effect from 23 September 2026.</p>
+
+  <h2>What the game keeps on your phone</h2>
+  <p>To remember where you are, Nine Down stores these in the app’s own storage on your device:</p>
+  <ul>
+    <li>your settings: sound, vibration, animation speed, language, theme, table style, house rules for both games and the names typed in for Pass &amp; Play;</li>
+    <li>a Shut the Box match and a Liar’s Dice game you have not finished yet, so you can pick them up later;</li>
+    <li>your statistics, achievements, daily challenge scores and streaks;</li>
+    <li>the table styles you have opened and the date of a daily re-roll you have earned;</li>
+    <li>a few counters that decide when help and the rating prompt appear: how many times the app was opened, how many good moments (wins, shut boxes) you have had, the version that last asked for a rating, and whether you have seen the first-game tips.</li>
+  </ul>
+  <p>These records never leave the device: the game has no code that uploads them, and we could not read them if we wanted to. Uninstalling Nine Down removes them together with the app, and a fresh install starts from an empty table.</p>
+  <div class="card"><p>Nine Down does not use your microphone, camera, contacts, photos or location.</p></div>
+
+  <h2>Ads</h2>
+  <p>The game is free and shows ads through Google AdMob. Ads never appear during a round: banners sit on the menu and on the match result, and a full-screen ad can appear only after a finished match. Ads are limited to content rated for general audiences.</p>
+  <p>Where the law asks for it (for example in the EEA, the UK and some US states), Google’s consent form asks for your choices when the app starts. On iPhone, the app then asks whether it may use your device’s advertising identifier. If you say no, you still get ads, just not ones chosen with that identifier.</p>
+  <p>To serve and measure ads, Google may collect information such as your device type, IP address and ad interactions. Google explains this in its <a href="https://policies.google.com/privacy">privacy policy</a> and in <a href="https://policies.google.com/technologies/partner-sites">how Google uses information from apps that use its services</a>.</p>
+
+  <h2>Ratings</h2>
+  <p>After a win or a shut box, and never in the first session, the app may open your store’s own rating sheet, at most once per app version. Whatever you choose there goes to Apple or Google, not to us.</p>
+
+  <h2>Changing your mind</h2>
+  <ul>
+    <li>In Nine Down: Settings → Privacy choices reopens Google’s consent form, where the law requires one.</li>
+    <li>On iPhone: Settings → Privacy &amp; Security → Tracking.</li>
+    <li>On Android: Settings → Privacy → Ads (or Google → Ads) lets you reset or delete your advertising ID.</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>Nine Down is not directed at children under 13 and is not listed in a children’s category. We do not knowingly collect personal information from children.</p>
+
+  <h2>Changes and questions</h2>
+  <p>If this policy changes, the new version will appear on this page with a new date. Questions or requests: <a href="mailto:fellasontheway@gmail.com?subject=Nine%20Down">fellasontheway@gmail.com</a>.</p>
+
+  <footer><a href="./">Nine Down support</a> · Nine Down: Shut the Box and Liar’s Dice, by AppFellas.</footer>
+</main>
+</body>
+</html>
