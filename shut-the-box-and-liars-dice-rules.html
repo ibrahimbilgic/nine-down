@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shut the Box and Liar's Dice Rules: How to Play, Scoring and the Odds</title>
+<meta name="description" content="Plain-English rules for Shut the Box (turns, one-die rule, three ways to score) and Liar's Dice (bids, calling liar, wild ones), plus exact odds tables you can use at the table.">
+<link rel="canonical" href="https://ibrahimbilgic.github.io/nine-down/shut-the-box-and-liars-dice-rules.html">
+<style>
+  @font-face { font-family: Unbounded; font-weight: 600 700; font-display: swap; src: url(fonts/unbounded-700.ttf) format("truetype"); }
+  @font-face { font-family: "Hanken Grotesk"; font-weight: 400 500; font-display: swap; src: url(fonts/hanken-400.ttf) format("truetype"); }
+  @font-face { font-family: "Hanken Grotesk"; font-weight: 600; font-display: swap; src: url(fonts/hanken-600.ttf) format("truetype"); }
+  :root { --linen:#F4EEE3; --paper:#FBF7EF; --ink:#2A1F17; --muted:#6B5C4E; --rim:#5A3A22; --shade:#3F2716; --ledge:#B98A52;
+    --tile-top:#F0D29B; --tile-bottom:#DDB374; --felt:#1D6B50; --felt-dark:#134B37; --ivory:#F6F1E6; --brass:#D9B566; --line:#DCCFBC; }
+  @media (prefers-color-scheme: dark) { :root { --linen:#17120E; --paper:#211A14; --ink:#F1E7D8; --muted:#B6A693; --line:#3A2E24; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--linen); color:var(--ink); font:400 17px/1.65 "Hanken Grotesk", system-ui, sans-serif; }
+  main { max-width: 40rem; margin:0 auto; padding: 28px 20px 60px; }
+  h1 { font:700 clamp(1.7rem,7vw,2.4rem)/1.12 Unbounded, system-ui, sans-serif; letter-spacing:-0.02em; margin:18px 0 10px; }
+  h2 { font:700 1.35rem/1.25 Unbounded, system-ui, sans-serif; margin:0 0 12px; }
+  h3 { font:600 1.05rem/1.3 "Hanken Grotesk", system-ui, sans-serif; margin:22px 0 4px; }
+  a { color:var(--felt); text-underline-offset:3px; } @media (prefers-color-scheme: dark) { a { color:#4FB08A; } }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline:2px solid var(--felt); outline-offset:3px; }
+  .rail { display:flex; gap:4px; } .flap { flex:1; max-width:40px; height:48px; border-radius:7px 7px 3px 3px; background:linear-gradient(var(--tile-top),var(--tile-bottom)); font:700 16px/48px Unbounded, system-ui, sans-serif; color:#3A2716; text-align:center; }
+  .flap.down { background:var(--shade); color:transparent; }
+  .lead { font-size:1.12rem; }
+  .jump { display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 0; padding:0; list-style:none; }
+  .jump a { display:inline-block; padding:8px 14px; border-radius:999px; border:2px solid var(--rim); color:var(--ink); text-decoration:none; font-weight:600; font-size:.95rem; }
+  section.game { margin-top:44px; }
+  section.game > h2 { padding-bottom:10px; border-bottom:6px double var(--ledge); }
+  .felt { background:radial-gradient(circle at 50% 10%, #248160, var(--felt) 55%, var(--felt-dark)); color:var(--ivory); border-radius:14px; padding:16px 18px; margin:14px 0; }
+  .felt p { margin:0; } .felt b { color:var(--brass); }
+  ol.steps { padding-left:0; list-style:none; counter-reset:s; } ol.steps li { counter-increment:s; position:relative; padding-left:44px; margin:12px 0; }
+  ol.steps li::before { content:counter(s); position:absolute; left:0; top:0; width:30px; height:30px; border-radius:7px 7px 3px 3px; background:linear-gradient(var(--tile-top),var(--tile-bottom)); color:#3A2716; font:700 14px/30px Unbounded, sans-serif; text-align:center; }
+  table { width:100%; border-collapse:collapse; font-size:.95rem; margin:12px 0; background:var(--paper); border:1px solid var(--line); }
+  th,td { padding:7px 9px; border-bottom:1px solid var(--line); text-align:left; } th { background:var(--rim); color:#F6F1E6; font-weight:600; }
+  td.n, th.n { text-align:right; font-variant-numeric: tabular-nums; }
+  .scroll { overflow-x:auto; }
+  .tool { background:var(--paper); border:2px solid var(--rim); border-radius:14px; padding:14px 16px; margin:16px 0; }
+  .tool .tiles { display:flex; gap:5px; flex-wrap:wrap; margin:8px 0; }
+  .tool button.t { width:40px; height:48px; border-radius:7px 7px 3px 3px; border:0; cursor:pointer; background:linear-gradient(var(--tile-top),var(--tile-bottom)); font:700 16px Unbounded, sans-serif; color:#3A2716; }
+  .tool button.t[aria-pressed="false"] { background:var(--shade); color:#8a7561; }
+  .tool input { font:inherit; font-size:1.1rem; width:5em; padding:6px 8px; border:2px solid var(--line); border-radius:8px; background:var(--linen); color:var(--ink); }
+  .tool .res { margin-top:8px; min-height:1.6em; font-weight:600; }
+  .note { font-size:.92rem; color:var(--muted); }
+  details { border-top:1px solid var(--line); padding:10px 0; } details:last-of-type { border-bottom:1px solid var(--line); } summary { cursor:pointer; font-weight:600; }
+  .app { margin-top:48px; background:var(--rim); color:#F6F1E6; border-radius:16px; padding:18px 20px; }
+  .app a { color:#F0D29B; font-weight:600; } .app p { margin:6px 0; }
+  footer { margin-top:30px; color:var(--muted); font-size:.9rem; }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"HowTo","name":"How to play Shut the Box","step":[
+{"@type":"HowToStep","name":"Roll the dice","text":"Roll two dice and add them up."},
+{"@type":"HowToStep","name":"Shut tiles","text":"Shut any open tiles whose numbers add up to the total you rolled."},
+{"@type":"HowToStep","name":"Keep rolling","text":"Roll again and repeat until you shut every tile or a roll leaves no legal move."},
+{"@type":"HowToStep","name":"Score","text":"Add up the tiles still standing. Lower is better, and a shut box scores zero."}]},
+{"@type":"HowTo","name":"How to play Liar's Dice","step":[
+{"@type":"HowToStep","name":"Roll in secret","text":"Each player shakes a cup of dice and looks at their own dice only."},
+{"@type":"HowToStep","name":"Bid","text":"Claim there are at least a given number of a face among all dice on the table. Each bid must raise the last one: more dice, or the same number of a higher face."},
+{"@type":"HowToStep","name":"Call or raise","text":"Instead of raising, call liar. Lift the cups: if the bid holds the caller loses a die, otherwise the bidder does."},
+{"@type":"HowToStep","name":"Last cup standing","text":"Play rounds until only one player still has dice."}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Can you shut the box with one die?","acceptedAnswer":{"@type":"Answer","text":"Many groups let you roll a single die once the tiles from 7 up are all shut. Nine Down offers this as a house-rule choice, and also a mode where one die is rolled when the open tiles add up to 6 or less."}},
+{"@type":"Question","name":"What are the odds of shutting the box?","acceptedAnswer":{"@type":"Answer","text":"In a 9-tile box with any-combination moves and best play, about 7.1 percent if you always roll two dice and about 9.8 percent if you roll one die when the remaining tiles add up to 6 or less."}},
+{"@type":"Question","name":"Are ones wild in Liar's Dice?","acceptedAnswer":{"@type":"Answer","text":"It depends on the house rules. When ones are wild they count as any face being bid, until someone bids on ones; after that nothing is wild for the rest of the round."}}]}
+]}
+</script>
+</head>
+<body>
+<main>
+  <div class="rail" aria-hidden="true"><span class="flap">1</span><span class="flap">2</span><span class="flap">3</span><span class="flap">4</span><span class="flap">5</span><span class="flap">6</span><span class="flap">7</span><span class="flap">8</span><span class="flap down">9</span></div>
+  <h1>Shut the Box and Liar's Dice: rules, scoring and odds</h1>
+  <p class="lead">Two dice games, both easy to teach in a minute. Below are the rules as most people play them, the options that change a game, and exact probability tables so you can see how likely a roll or a bid really is.</p>
+  <ul class="jump"><li><a href="#shut">Shut the Box</a></li><li><a href="#liars">Liar's Dice</a></li><li><a href="#odds">Odds tables</a></li><li><a href="#faq">Questions</a></li></ul>
+
+  <section class="game" id="shut" aria-labelledby="h-shut">
+    <h2 id="h-shut">Shut the Box: how to play</h2>
+    <p>You need a box of numbered tiles (1 to 9 is the classic, some boxes go to 10 or 12) and two dice. Every tile starts open, meaning standing up.</p>
+    <ol class="steps">
+      <li><b>Roll both dice</b> and add them. Say you roll a 6 and a 3: the total is 9.</li>
+      <li><b>Shut tiles that add up to the total.</b> With everything open you could shut the 9, or the 6 and the 3, or 5 + 3 + 1, or 4 + 3 + 2, among others. Pick one set. You can only use open tiles, and each tile once.</li>
+      <li><b>Roll again</b> and do the same with the tiles that are left.</li>
+      <li><b>Your turn ends</b> when a roll gives you no set of open tiles that matches the total, or when the whole box is shut.</li>
+      <li><b>Score what is still standing.</b> If 1, 4 and 7 are still open you have 12 points. Lower is better, and a shut box is zero.</li>
+    </ol>
+    <div class="felt"><p><b>In a group:</b> everyone takes a turn with their own fresh box and the lowest score takes the round. Shutting the whole box wins it on the spot.</p></div>
+
+    <h3>House rules that change the game</h3>
+    <p><b>What you may shut.</b> The usual rule is any open tiles that sum to the roll. A stricter version only lets you shut the single tile equal to the total, or the two tiles showing on the dice (and only if the dice differ). The strict version is far harder; see the table below.</p>
+    <p><b>One die.</b> Near the end, a total of two dice is often too big for the small tiles left. Groups handle it differently: never roll one die, roll one die automatically once the open tiles add up to 6 or less, or let the player choose one die or two once every tile from 7 up is shut.</p>
+    <p><b>Box size.</b> 9 tiles is standard. 10-tile and 12-tile boxes exist and make a shut box much rarer.</p>
+
+    <h3>Three ways to score</h3>
+    <table>
+      <thead><tr><th>Mode</th><th>How it works</th></tr></thead>
+      <tbody>
+        <tr><td>Points</td><td>Add up the tiles left standing; lowest takes the round.</td></tr>
+        <tr><td>Digital</td><td>Read the open tiles as one number, smallest first: 1, 4 and 7 make 147; 3 and 10 make 310. Having fewer tiles up matters more than having small ones.</td></tr>
+        <tr><td>Golf</td><td>Everyone plays every round and points carry over; the lowest running total after the last round wins. Shutting the box scores 0 but does not end the round.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tool" id="finder">
+      <h3 style="margin-top:0">Which tiles can I shut?</h3>
+      <p class="note" style="margin:0">Tap tiles to mark them open (light) or shut (dark), enter your total, and see every combination that works.</p>
+      <div class="tiles" id="finderTiles" role="group" aria-label="Open tiles"></div>
+      <label for="finderTotal">Dice total: </label><input id="finderTotal" inputmode="numeric" value="9" maxlength="2">
+      <div class="res" id="finderRes" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="game" id="liars" aria-labelledby="h-liars">
+    <h2 id="h-liars">Liar's Dice: how to play</h2>
+    <p>Each player has a cup with the same number of dice (five is the usual). The goal is to be the last player with a die.</p>
+    <ol class="steps">
+      <li><b>Everyone rolls in secret.</b> Shake your cup, peek at your own dice, keep them hidden.</li>
+      <li><b>Bid on the whole table.</b> A bid like "four fives" claims that, counting every cup together, there are at least four dice showing five. Nobody knows more than their own cup, so a bid is a mix of what you hold and what you guess.</li>
+      <li><b>Each bid must go up.</b> Either more dice ("five fives" after "four fives") or the same number of a higher face ("four sixes" after "four fives").</li>
+      <li><b>Or call it.</b> Instead of raising, say "Liar!" if you think the last bid is too high. Everyone lifts their cups and counts. If there are at least as many as bid, the bid held and the caller loses a die. If there are fewer, the bidder loses a die.</li>
+      <li><b>Next round.</b> Re-roll and go again; in Nine Down the player who lost the die opens the next round. A player with no dice is out. Last cup standing wins.</li>
+    </ol>
+
+    <h3>Wild ones</h3>
+    <p>A common option: every 1 counts as whatever face is being bid, so a bid on fives is met by fives and ones together. The exception is a bid on ones themselves. Once anyone bids on ones in a round, nothing is wild until the cups are lifted. Turning wild ones off makes ones an ordinary face, and the odds fall to one in six per die.</p>
+
+    <h3>"Spot on"</h3>
+    <p>An optional extra call. Instead of "Liar!" you can say the last bid is exactly right. If the count matches the bid exactly, the bidder loses a die; if not, you lose one. It is risky because exact counts are less likely than "at least" counts.</p>
+
+    <h3>A simple way to judge a bid</h3>
+    <p>Count the dice in your own cup that match. Subtract that from the bid to see how many matching dice you need from the other cups. Then look up in the table below how likely that is. A bid that needs only one or two from many hidden dice is usually safe; a bid that needs half of them or more is where bluffing lives.</p>
+  </section>
+
+  <section class="game" id="odds" aria-labelledby="h-odds">
+    <h2 id="h-odds">The odds, calculated exactly</h2>
+
+    <h3>Shut the Box: chance of shutting the whole box</h3>
+    <p>These are exact figures for a player who always makes the move that gives the best chance of shutting the box.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Box and rules</th><th class="n">Always two dice</th><th class="n">One die at 6 or less</th></tr></thead>
+      <tbody>
+        <tr><td>9 tiles, any combination</td><td class="n">7.14%</td><td class="n">9.76%</td></tr>
+        <tr><td>10 tiles, any combination</td><td class="n">4.04%</td><td class="n">5.38%</td></tr>
+        <tr><td>12 tiles, any combination</td><td class="n">0.36%</td><td class="n">0.48%</td></tr>
+        <tr><td>9 tiles, total or each die only</td><td class="n">0.51%</td><td class="n">0.64%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">The 9-tile figures match published single-player analyses of the game.</p>
+
+    <h3>Your first roll in a 9-tile box</h3>
+    <p>With any-combination moves and the one-die-at-6-or-less rule, here is how likely each first total is, which move keeps the best chance of shutting the box afterwards, and what that chance is.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>First total</th><th class="n">Chance to roll it</th><th>Best tiles to shut</th><th class="n">Box shut later</th></tr></thead>
+      <tbody>
+        <tr><td>2</td><td class="n">2.8%</td><td>2</td><td class="n">5.7%</td></tr>
+        <tr><td>3</td><td class="n">5.6%</td><td>3</td><td class="n">6.6%</td></tr>
+        <tr><td>4</td><td class="n">8.3%</td><td>4</td><td class="n">7.4%</td></tr>
+        <tr><td>5</td><td class="n">11.1%</td><td>5</td><td class="n">8.3%</td></tr>
+        <tr><td>6</td><td class="n">13.9%</td><td>6</td><td class="n">9.0%</td></tr>
+        <tr><td>7</td><td class="n">16.7%</td><td>7</td><td class="n">9.8%</td></tr>
+        <tr><td>8</td><td class="n">13.9%</td><td>8</td><td class="n">11.9%</td></tr>
+        <tr><td>9</td><td class="n">11.1%</td><td>9</td><td class="n">14.5%</td></tr>
+        <tr><td>10</td><td class="n">8.3%</td><td>1 + 9</td><td class="n">8.7%</td></tr>
+        <tr><td>11</td><td class="n">5.6%</td><td>2 + 9</td><td class="n">9.5%</td></tr>
+        <tr><td>12</td><td class="n">2.8%</td><td>3 + 9</td><td class="n">10.7%</td></tr>
+      </tbody>
+    </table></div>
+    <p>The pattern: shut the one big tile when you can. High tiles are hard to remove later, because only a few rolls make them, while low tiles can be made by many combinations.</p>
+
+    <h3>Liar's Dice: at least this many matches among unseen dice</h3>
+    <p>"Unseen dice" are the dice in cups other than yours. Read across for how many matching dice you need from them. Without wild ones, each unseen die matches with probability 1 in 6.</p>
+    <div class="scroll"><table>
+      <caption class="note" style="text-align:left">Ones are not wild (each die matches 1 time in 6)</caption>
+      <thead><tr><th>Unseen dice</th><th class="n">1+</th><th class="n">2+</th><th class="n">3+</th><th class="n">4+</th><th class="n">5+</th><th class="n">6+</th></tr></thead>
+      <tbody>
+        <tr><td>5</td><td class="n">59.8%</td><td class="n">19.6%</td><td class="n">3.5%</td><td class="n">0.3%</td><td class="n">0.0%</td><td class="n">0.0%</td></tr>
+        <tr><td>10</td><td class="n">83.8%</td><td class="n">51.5%</td><td class="n">22.5%</td><td class="n">7.0%</td><td class="n">1.5%</td><td class="n">0.2%</td></tr>
+        <tr><td>15</td><td class="n">93.5%</td><td class="n">74.0%</td><td class="n">46.8%</td><td class="n">23.2%</td><td class="n">9.0%</td><td class="n">2.7%</td></tr>
+      </tbody>
+    </table></div>
+    <div class="scroll"><table>
+      <caption class="note" style="text-align:left">Ones are wild, bidding on a face other than one (each die matches 1 time in 3)</caption>
+      <thead><tr><th>Unseen dice</th><th class="n">1+</th><th class="n">2+</th><th class="n">3+</th><th class="n">4+</th><th class="n">5+</th><th class="n">6+</th></tr></thead>
+      <tbody>
+        <tr><td>5</td><td class="n">86.8%</td><td class="n">53.9%</td><td class="n">21.0%</td><td class="n">4.5%</td><td class="n">0.4%</td><td class="n">0.0%</td></tr>
+        <tr><td>10</td><td class="n">98.3%</td><td class="n">89.6%</td><td class="n">70.1%</td><td class="n">44.1%</td><td class="n">21.3%</td><td class="n">7.7%</td></tr>
+        <tr><td>15</td><td class="n">99.8%</td><td class="n">98.1%</td><td class="n">92.1%</td><td class="n">79.1%</td><td class="n">59.6%</td><td class="n">38.2%</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Example.</b> You hold two fives in a five-dice cup, with ones wild, and a rival has just bid "six fives" with ten dice unseen. Both of your fives count, so you need 4 more from the 10 unseen dice: 44.1%. So the bid holds about 44% of the time, and a "Liar!" call would be right about 56% of the time.</p>
+    <p class="note">These assume every unseen die is a fair, independent roll. Real opponents bid for reasons, so their bids tell you something too. In a bid on ones, or with wild ones off, use the first table.</p>
+  </section>
+
+  <section class="game" id="faq" aria-labelledby="h-faq">
+    <h2 id="h-faq">Quick answers</h2>
+    <details><summary>Can I shut the box with one die?</summary><p>Many groups allow a single die once tiles 7 and above are all shut. Others roll one die automatically when the open tiles add up to 6 or less, because two dice would then often overshoot. Agree on it before you start; it moves the odds of a shut box from about 7.1% to 9.8%.</p></details>
+    <details><summary>Do I have to shut as many tiles as possible?</summary><p>No. You choose any legal set. Shutting one large tile is usually better than two small ones that add up to the same number.</p></details>
+    <details><summary>What if two players tie?</summary><p>Replaying the round is the simplest fix, or simply call it a draw and move on.</p></details>
+    <details><summary>How many dice per cup in Liar's Dice?</summary><p>Five is traditional. Three or four make a shorter game. Nine Down lets you choose 3, 4 or 5.</p></details>
+    <details><summary>Does a bid on ones work differently?</summary><p>If ones are wild, a bid on ones is just a bid on ones, with no wild dice, and it switches wildness off for the rest of that round.</p></details>
+  </section>
+
+  <aside class="app" aria-labelledby="h-app">
+    <h2 id="h-app" style="font-size:1.1rem">Play both on your phone</h2>
+    <p>Nine Down is a phone app I make with Shut the Box and Liar's Dice in it: against a computer player or passing one phone around. Its hint button lists each legal move with its exact chance of shutting the box, the way the tables above were worked out, and the Liar's Dice screen shows your chance that a bid holds. It shows ads.</p>
+    <p><a href="https://play.google.com/store/apps/details?id=com.appfellas.ninedown&amp;referrer=utm_source%3Dweb%26utm_medium%3Drules_page%26utm_campaign%3Dorganic">Nine Down on Google Play</a></p>
+  </aside>
+  <footer><a href="./">Nine Down home</a> &middot; <a href="policy.html">Privacy</a></footer>
+</main>
+<script>
+(function () {
+  var SUBS = {};
+  for (var m = 1; m < 512; m++) { var s = 0, t = []; for (var i = 1; i <= 9; i++) if (m & (1 << (i - 1))) { s += i; t.push(i); } (SUBS[s] = SUBS[s] || []).push(t); }
+  window.NINEDOWN_SUBSETS = function (open, total) {
+    return (SUBS[total] || []).filter(function (c) { return c.every(function (x) { return open.indexOf(x) >= 0; }); })
+      .sort(function (a, b) { return b[b.length - 1] - a[a.length - 1] || a.length - b.length; });
+  };
+  if (typeof document === "undefined") return;
+  var open = [1, 2, 3, 4, 5, 6, 7, 8, 9], box = document.getElementById("finderTiles"), inp = document.getElementById("finderTotal"), res = document.getElementById("finderRes");
+  for (var n = 1; n <= 9; n++) (function (n) {
+    var b = document.createElement("button"); b.type = "button"; b.className = "t"; b.textContent = n; b.setAttribute("aria-pressed", "true");
+    b.setAttribute("aria-label", "Tile " + n);
+    b.onclick = function () { var k = open.indexOf(n); if (k >= 0) open.splice(k, 1); else open.push(n); b.setAttribute("aria-pressed", k < 0); show(); };
+    box.appendChild(b);
+  })(n);
+  function show() {
+    var v = parseInt(inp.value, 10);
+    if (!(v >= 2 && v <= 12)) { res.textContent = "Enter a two-dice total from 2 to 12."; return; }
+    var r = window.NINEDOWN_SUBSETS(open, v);
+    res.textContent = r.length ? "You can shut: " + r.map(function (c) { return c.join(" + "); }).join("   |   ") : "No move. Your turn is over.";
+  }
+  inp.oninput = show; show();
+})();
+</script>
+</body>
+</html>
